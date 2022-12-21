@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b30655adc0bf429b819101c7f470bdab" Name="Diagram1">
+        <EntityTypeShape EntityType="Dbo_YemekTarifiModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Dbo_YemekTarifiModel.TBL_GUNUNYEMEGİ" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Dbo_YemekTarifiModel.TBL_KATEGORİLER" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Dbo_YemekTarifiModel.TBL_TARİFLER" Width="1.5" PointX="4.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Dbo_YemekTarifiModel.TBL_YEMEKLER" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="Dbo_YemekTarifiModel.TBL_YORUMLAR" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Dbo_YemekTarifiModel.TBL_YÖNETİCİ" Width="1.5" PointX="6.75" PointY="4.75" IsExpanded="true" />
+        <AssociationConnector Association="Dbo_YemekTarifiModel.FK_TBL_YEMEKLER_TBL_KATEGORİLER" ManuallyRouted="false" />
+        <AssociationConnector Association="Dbo_YemekTarifiModel.FK_TBL_YORUMLAR_TBL_YEMEKLER" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="Dbo_YemekTarifiModel.TBL_MESAJLAR" Width="1.5" PointX="7.375" PointY="0.75" />
+        <EntityTypeShape EntityType="Dbo_YemekTarifiModel.TBL_HAKKIMIZDA" Width="1.5" PointX="7.375" PointY="7.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

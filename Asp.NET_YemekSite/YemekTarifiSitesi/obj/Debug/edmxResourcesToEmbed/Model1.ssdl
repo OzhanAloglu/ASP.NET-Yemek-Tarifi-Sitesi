@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Dbo_YemekTarifiModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="TBL_GUNUNYEMEGİ">
+    <Key>
+      <PropertyRef Name="GununYemegiid" />
+    </Key>
+    <Property Name="GununYemegiid" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GununYemegiAd" Type="varchar" MaxLength="50" />
+    <Property Name="GununYemegiMalzeme" Type="varchar" MaxLength="500" />
+    <Property Name="GununYemegiTarif" Type="varchar(max)" />
+    <Property Name="GununYemegiResim" Type="varchar" MaxLength="150" />
+    <Property Name="GununYemegiPuan" Type="tinyint" />
+    <Property Name="GununYemegiTarih" Type="smalldatetime" />
+  </EntityType>
+  <EntityType Name="TBL_HAKKIMIZDA">
+    <Key>
+      <PropertyRef Name="Metinid" />
+    </Key>
+    <Property Name="Metinid" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Metin" Type="varchar" MaxLength="2000" />
+  </EntityType>
+  <EntityType Name="TBL_KATEGORİLER">
+    <Key>
+      <PropertyRef Name="Kategoriid" />
+    </Key>
+    <Property Name="Kategoriid" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="KategoriAd" Type="varchar" MaxLength="50" />
+    <Property Name="KategoriAdet" Type="smallint" />
+    <Property Name="KategoriResim" Type="varchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="TBL_MESAJLAR">
+    <Key>
+      <PropertyRef Name="Mesajid" />
+    </Key>
+    <Property Name="Mesajid" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MesajGönderen" Type="varchar" MaxLength="50" />
+    <Property Name="MesajBaslik" Type="varchar" MaxLength="50" />
+    <Property Name="MesajMail" Type="varchar" MaxLength="50" />
+    <Property Name="Mesajicerik" Type="varchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="TBL_TARİFLER">
+    <Key>
+      <PropertyRef Name="Tarifid" />
+    </Key>
+    <Property Name="Tarifid" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TarifAd" Type="varchar" MaxLength="50" />
+    <Property Name="TarifMalzeme" Type="varchar" MaxLength="500" />
+    <Property Name="Tarifyapilis" Type="varchar(max)" />
+    <Property Name="TarifResim" Type="varchar" MaxLength="100" />
+    <Property Name="TarifSahip" Type="varchar" MaxLength="50" />
+    <Property Name="TarifSahipMail" Type="varchar" MaxLength="50" />
+    <Property Name="TarifDurum" Type="bit" />
+  </EntityType>
+  <EntityType Name="TBL_YEMEKLER">
+    <Key>
+      <PropertyRef Name="Yemekid" />
+    </Key>
+    <Property Name="Yemekid" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="YemekAd" Type="varchar" MaxLength="50" />
+    <Property Name="YemekMalzeme" Type="varchar" MaxLength="500" />
+    <Property Name="YemekTarif" Type="varchar(max)" />
+    <Property Name="YemekResim" Type="varchar" MaxLength="100" />
+    <Property Name="YemekTarih" Type="smalldatetime" />
+    <Property Name="YemekPuan" Type="float" />
+    <Property Name="Kategoriid" Type="smallint" />
+  </EntityType>
+  <EntityType Name="TBL_YORUMLAR">
+    <Key>
+      <PropertyRef Name="Yorumid" />
+    </Key>
+    <Property Name="Yorumid" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="YorumAdSoyad" Type="varchar" MaxLength="50" />
+    <Property Name="YorumMail" Type="varchar" MaxLength="50" />
+    <Property Name="YorumTarih" Type="smalldatetime" />
+    <Property Name="YorumOnay" Type="bit" />
+    <Property Name="Yorumİcerik" Type="varchar" MaxLength="500" />
+    <Property Name="Yemekid" Type="smallint" />
+  </EntityType>
+  <EntityType Name="TBL_YÖNETİCİ">
+    <Key>
+      <PropertyRef Name="Yoneticiid" />
+    </Key>
+    <Property Name="Yoneticiid" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="YoneticiAd" Type="varchar" MaxLength="50" />
+    <Property Name="YoneticiSifre" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK_TBL_YEMEKLER_TBL_KATEGORİLER">
+    <End Role="TBL_KATEGORİLER" Type="Self.TBL_KATEGORİLER" Multiplicity="0..1" />
+    <End Role="TBL_YEMEKLER" Type="Self.TBL_YEMEKLER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBL_KATEGORİLER">
+        <PropertyRef Name="Kategoriid" />
+      </Principal>
+      <Dependent Role="TBL_YEMEKLER">
+        <PropertyRef Name="Kategoriid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TBL_YORUMLAR_TBL_YEMEKLER">
+    <End Role="TBL_YEMEKLER" Type="Self.TBL_YEMEKLER" Multiplicity="0..1" />
+    <End Role="TBL_YORUMLAR" Type="Self.TBL_YORUMLAR" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBL_YEMEKLER">
+        <PropertyRef Name="Yemekid" />
+      </Principal>
+      <Dependent Role="TBL_YORUMLAR">
+        <PropertyRef Name="Yemekid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Dbo_YemekTarifiModelStoreContainer">
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_GUNUNYEMEGİ" EntityType="Self.TBL_GUNUNYEMEGİ" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_HAKKIMIZDA" EntityType="Self.TBL_HAKKIMIZDA" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_KATEGORİLER" EntityType="Self.TBL_KATEGORİLER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_MESAJLAR" EntityType="Self.TBL_MESAJLAR" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_TARİFLER" EntityType="Self.TBL_TARİFLER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_YEMEKLER" EntityType="Self.TBL_YEMEKLER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_YORUMLAR" EntityType="Self.TBL_YORUMLAR" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_YÖNETİCİ" EntityType="Self.TBL_YÖNETİCİ" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_TBL_YEMEKLER_TBL_KATEGORİLER" Association="Self.FK_TBL_YEMEKLER_TBL_KATEGORİLER">
+      <End Role="TBL_KATEGORİLER" EntitySet="TBL_KATEGORİLER" />
+      <End Role="TBL_YEMEKLER" EntitySet="TBL_YEMEKLER" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TBL_YORUMLAR_TBL_YEMEKLER" Association="Self.FK_TBL_YORUMLAR_TBL_YEMEKLER">
+      <End Role="TBL_YEMEKLER" EntitySet="TBL_YEMEKLER" />
+      <End Role="TBL_YORUMLAR" EntitySet="TBL_YORUMLAR" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

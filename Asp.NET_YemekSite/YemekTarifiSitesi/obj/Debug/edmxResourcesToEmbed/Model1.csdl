@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Dbo_YemekTarifiModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="TBL_GUNUNYEMEGİ">
+    <Key>
+      <PropertyRef Name="GununYemegiid" />
+    </Key>
+    <Property Name="GununYemegiid" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GununYemegiAd" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="GununYemegiMalzeme" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="GununYemegiTarif" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="GununYemegiPuan" Type="Byte" />
+    <Property Name="GununYemegiTarih" Type="DateTime" Precision="0" />
+    <Property Name="GununYemegiResim" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="TBL_KATEGORİLER">
+    <Key>
+      <PropertyRef Name="Kategoriid" />
+    </Key>
+    <Property Name="Kategoriid" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="KategoriAd" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="KategoriAdet" Type="Int16" />
+    <Property Name="KategoriResim" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="TBL_YEMEKLER" Relationship="Self.FK_TBL_YEMEKLER_TBL_KATEGORİLER" FromRole="TBL_KATEGORİLER" ToRole="TBL_YEMEKLER" />
+  </EntityType>
+  <EntityType Name="TBL_TARİFLER">
+    <Key>
+      <PropertyRef Name="Tarifid" />
+    </Key>
+    <Property Name="Tarifid" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TarifAd" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TarifMalzeme" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="Tarifyapilis" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="TarifResim" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="TarifSahip" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TarifSahipMail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TarifDurum" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="TBL_YEMEKLER">
+    <Key>
+      <PropertyRef Name="Yemekid" />
+    </Key>
+    <Property Name="Yemekid" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="YemekAd" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="YemekMalzeme" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="YemekTarif" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="YemekResim" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="YemekTarih" Type="DateTime" Precision="0" />
+    <Property Name="YemekPuan" Type="Byte" />
+    <Property Name="Kategoriid" Type="Int16" />
+    <NavigationProperty Name="TBL_KATEGORİLER" Relationship="Self.FK_TBL_YEMEKLER_TBL_KATEGORİLER" FromRole="TBL_YEMEKLER" ToRole="TBL_KATEGORİLER" />
+    <NavigationProperty Name="TBL_YORUMLAR" Relationship="Self.FK_TBL_YORUMLAR_TBL_YEMEKLER" FromRole="TBL_YEMEKLER" ToRole="TBL_YORUMLAR" />
+  </EntityType>
+  <EntityType Name="TBL_YORUMLAR">
+    <Key>
+      <PropertyRef Name="Yorumid" />
+    </Key>
+    <Property Name="Yorumid" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="YorumAdSoyad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="YorumMail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="YorumTarih" Type="DateTime" Precision="0" />
+    <Property Name="YorumOnay" Type="Boolean" />
+    <Property Name="Yorumİcerik" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="Yemekid" Type="Int16" />
+    <NavigationProperty Name="TBL_YEMEKLER" Relationship="Self.FK_TBL_YORUMLAR_TBL_YEMEKLER" FromRole="TBL_YORUMLAR" ToRole="TBL_YEMEKLER" />
+  </EntityType>
+  <EntityType Name="TBL_YÖNETİCİ">
+    <Key>
+      <PropertyRef Name="Yoneticiid" />
+    </Key>
+    <Property Name="Yoneticiid" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="YoneticiAd" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="YoneticiSifre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <Association Name="FK_TBL_YEMEKLER_TBL_KATEGORİLER">
+    <End Role="TBL_KATEGORİLER" Type="Self.TBL_KATEGORİLER" Multiplicity="0..1" />
+    <End Role="TBL_YEMEKLER" Type="Self.TBL_YEMEKLER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBL_KATEGORİLER">
+        <PropertyRef Name="Kategoriid" />
+      </Principal>
+      <Dependent Role="TBL_YEMEKLER">
+        <PropertyRef Name="Kategoriid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TBL_YORUMLAR_TBL_YEMEKLER">
+    <End Role="TBL_YEMEKLER" Type="Self.TBL_YEMEKLER" Multiplicity="0..1" />
+    <End Role="TBL_YORUMLAR" Type="Self.TBL_YORUMLAR" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBL_YEMEKLER">
+        <PropertyRef Name="Yemekid" />
+      </Principal>
+      <Dependent Role="TBL_YORUMLAR">
+        <PropertyRef Name="Yemekid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Dbo_YemekTarifiEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="TBL_GUNUNYEMEGİ" EntityType="Self.TBL_GUNUNYEMEGİ" />
+    <EntitySet Name="TBL_KATEGORİLER" EntityType="Self.TBL_KATEGORİLER" />
+    <EntitySet Name="TBL_TARİFLER" EntityType="Self.TBL_TARİFLER" />
+    <EntitySet Name="TBL_YEMEKLER" EntityType="Self.TBL_YEMEKLER" />
+    <EntitySet Name="TBL_YORUMLAR" EntityType="Self.TBL_YORUMLAR" />
+    <EntitySet Name="TBL_YÖNETİCİ" EntityType="Self.TBL_YÖNETİCİ" />
+    <AssociationSet Name="FK_TBL_YEMEKLER_TBL_KATEGORİLER" Association="Self.FK_TBL_YEMEKLER_TBL_KATEGORİLER">
+      <End Role="TBL_KATEGORİLER" EntitySet="TBL_KATEGORİLER" />
+      <End Role="TBL_YEMEKLER" EntitySet="TBL_YEMEKLER" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TBL_YORUMLAR_TBL_YEMEKLER" Association="Self.FK_TBL_YORUMLAR_TBL_YEMEKLER">
+      <End Role="TBL_YEMEKLER" EntitySet="TBL_YEMEKLER" />
+      <End Role="TBL_YORUMLAR" EntitySet="TBL_YORUMLAR" />
+    </AssociationSet>
+    <EntitySet Name="TBL_MESAJLAR" EntityType="Dbo_YemekTarifiModel.TBL_MESAJLAR" />
+    <EntitySet Name="TBL_HAKKIMIZDA" EntityType="Dbo_YemekTarifiModel.TBL_HAKKIMIZDA" />
+  </EntityContainer>
+  <EntityType Name="TBL_MESAJLAR">
+    <Key>
+      <PropertyRef Name="Mesajid" />
+    </Key>
+    <Property Name="Mesajid" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MesajGönderen" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="MesajBaslik" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="MesajMail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Mesajicerik" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="TBL_HAKKIMIZDA">
+    <Key>
+      <PropertyRef Name="Metinid" />
+    </Key>
+    <Property Name="Metinid" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Metin" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+  </EntityType>
+</Schema>
